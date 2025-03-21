@@ -20,6 +20,16 @@
             font-size: 2.5rem;
             margin-bottom: 20px;
         }
+        #result {
+            font-size: 5rem;
+            font-weight: bold;
+            margin: 20px 0;
+            margin-bottom: 40px;
+            max-width: 80vw;
+            background: linear-gradient(to right, #a8ff78, #78ffd6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
         button {
             padding: 15px 30px;
             font-size: 1.2rem;
@@ -38,14 +48,16 @@
 </head>
 <body>
     <h1>Mistusica</h1>
+    <div id="result"></div>
     <button id="generate">Gerar Mistura</button>
 
     <script>
         document.getElementById("generate").addEventListener("click", async function() {
             try {
-                const response = await fetch("https://seuapp.railway.app/music_styles/generate");
+                const response = await fetch("https://mistusica-back-end.onrender.com/music_styles/generate");
                 const data = await response.json();
-                window.location.href = `result.html?style1=${data.styles[0]}&style2=${data.styles[1]}`;
+                const resultDiv = document.getElementById("result");
+                resultDiv.textContent = `${data.styles[0]} ${data.styles[1]}`;
             } catch (error) {
                 console.error("Erro ao buscar estilos musicais", error);
             }
