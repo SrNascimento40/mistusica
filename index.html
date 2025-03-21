@@ -56,7 +56,7 @@
             try {
             const response = await fetch("https://mistusica-back-end.onrender.com/music_styles/generate", {
                             headers: {
-                                "Accept": "application/json; charset=utf-8"
+                                "content-type": "application/json"
                             }
                             });
             if (!response.headers.get("content-type")?.includes("application/json")) {
